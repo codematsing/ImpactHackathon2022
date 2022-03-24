@@ -1,6 +1,91 @@
-Table Facilities as facilities{
-    id int [pk, increment]
+// https://dbdocs.io/codematsing/SanDoc
+Table Facilities as facility {
+    id "bigint unsigned" [pk, increment]
     name varchar
     latitude float
     longitude float
+    operating_start_time_24hr varchar
+    operating_end_time_24hr varchar
+    landline_no varchar
+    email varchar
+}
+
+Table Equipment as equipment {
+    id "bigint unsigned" [pk, increment]
+    name varchar
+    facility_id "bigint unsigned" [ref: > facility.id]
+}
+
+Table Doctors as doctor {
+    id "bigint unsigned" [pk, increment]
+    first_name varchar
+    last_name varchar
+    landline_no varchar
+    email varchar
+}
+
+Table Doctors_Specialization as doc_spec {
+    id "bigint unsigned" [pk, increment]
+    doctor_id "bigint unsigned" [ref: > doctor.id]
+    doc_spec "bigint unsigned" [ref: > specialization.id]
+}
+
+Table Specializations as specialization {
+    id "bigint unsigned" [pk, increment]
+    title varchar
+}
+
+Table Doctors_Facilities as doc_fac {
+    id "bigint unsigned" [pk, increment]
+    day enum
+    time_start_24hr varchar
+    time_end_24hr varchar
+    doctor_id "bigint unsigned" [ref: > doctor.id]
+    facility_id "bigint unsigned" [ref: > facility.id]
+    room_no "bigint unsigned" [ref: > facility.id]
+}
+Table Facilities as facility {
+    id "bigint unsigned" [pk, increment]
+    name varchar
+    latitude float
+    longitude float
+    operating_start_time_24hr varchar
+    operating_end_time_24hr varchar
+    landline_no varchar
+    email varchar
+}
+
+Table Equipment as equipment {
+    id "bigint unsigned" [pk, increment]
+    name varchar
+    facility_id "bigint unsigned" [ref: > facility.id]
+}
+
+Table Doctors as doctor {
+    id "bigint unsigned" [pk, increment]
+    first_name varchar
+    last_name varchar
+    landline_no varchar
+    email varchar
+}
+
+Table Doctors_Specialization as doc_spec {
+    id "bigint unsigned" [pk, increment]
+    doctor_id "bigint unsigned" [ref: > doctor.id]
+    doc_spec "bigint unsigned" [ref: > specialization.id]
+}
+
+Table Specializations as specialization {
+    id "bigint unsigned" [pk, increment]
+    title varchar
+}
+
+Table Doctors_Facilities as doc_fac {
+    id "bigint unsigned" [pk, increment]
+    day enum
+    time_start_24hr varchar
+    time_end_24hr varchar
+    doctor_id "bigint unsigned" [ref: > doctor.id]
+    facility_id "bigint unsigned" [ref: > facility.id]
+    room_no "bigint unsigned" [ref: > facility.id]
 }
