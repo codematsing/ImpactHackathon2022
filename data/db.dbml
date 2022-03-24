@@ -1,0 +1,6 @@
+Table Facilities as facilities{
+    id int [pk, increment]
+    name varchar
+    latitude float
+    longitude float
+}
