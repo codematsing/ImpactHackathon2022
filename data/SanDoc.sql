@@ -6,7 +6,19 @@ CREATE TABLE `Facilities` (
   `operating_start_time_24hr` varchar(255),
   `operating_end_time_24hr` varchar(255),
   `landline_no` varchar(255),
-  `email` varchar(255)
+  `email` varchar(255),
+  `score` int
+);
+
+CREATE TABLE `Services` (
+  `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255)
+);
+
+CREATE TABLE `Facilities_Services` (
+  `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+  `facility_id` bigint unsigned,
+  `service_id` bigint unsigned
 );
 
 CREATE TABLE `Equipment` (
@@ -20,10 +32,11 @@ CREATE TABLE `Doctors` (
   `first_name` varchar(255),
   `last_name` varchar(255),
   `landline_no` varchar(255),
-  `email` varchar(255)
+  `email` varchar(255),
+  `score` int
 );
 
-CREATE TABLE `Doctors_Specialization` (
+CREATE TABLE `Doctors_Specializations` (
   `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
   `doctor_id` bigint unsigned,
   `doc_spec` bigint unsigned
@@ -52,11 +65,15 @@ CREATE TABLE `Appointments` (
   `user_id` bigint unsigned
 );
 
+ALTER TABLE `Facilities_Services` ADD FOREIGN KEY (`facility_id`) REFERENCES `Facilities` (`id`);
+
+ALTER TABLE `Facilities_Services` ADD FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`);
+
 ALTER TABLE `Equipment` ADD FOREIGN KEY (`facility_id`) REFERENCES `Facilities` (`id`);
 
-ALTER TABLE `Doctors_Specialization` ADD FOREIGN KEY (`doctor_id`) REFERENCES `Doctors` (`id`);
+ALTER TABLE `Doctors_Specializations` ADD FOREIGN KEY (`doctor_id`) REFERENCES `Doctors` (`id`);
 
-ALTER TABLE `Doctors_Specialization` ADD FOREIGN KEY (`doc_spec`) REFERENCES `Specializations` (`id`);
+ALTER TABLE `Doctors_Specializations` ADD FOREIGN KEY (`doc_spec`) REFERENCES `Specializations` (`id`);
 
 ALTER TABLE `Doctors_Facilities` ADD FOREIGN KEY (`doctor_id`) REFERENCES `Doctors` (`id`);
 

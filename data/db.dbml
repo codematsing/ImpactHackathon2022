@@ -8,6 +8,18 @@ Table Facilities as facility {
     operating_end_time_24hr varchar
     landline_no varchar
     email varchar
+    score int
+}
+
+Table Services as service {
+    id "bigint unsigned" [pk, increment]
+    name varchar
+}
+
+Table Facilities_Services {
+    id "bigint unsigned" [pk, increment]
+    facility_id "bigint unsigned" [ref: > facility.id]
+    service_id "bigint unsigned" [ref: > service.id]
 }
 
 Table Equipment as equipment {
@@ -22,9 +34,10 @@ Table Doctors as doctor {
     last_name varchar
     landline_no varchar
     email varchar
+    score int
 }
 
-Table Doctors_Specialization as doc_spec {
+Table Doctors_Specializations as doc_spec {
     id "bigint unsigned" [pk, increment]
     doctor_id "bigint unsigned" [ref: > doctor.id]
     doc_spec "bigint unsigned" [ref: > specialization.id]
