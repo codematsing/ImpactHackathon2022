@@ -10,6 +10,17 @@ CREATE TABLE `Facilities` (
   `score` int
 );
 
+CREATE TABLE `HMOs` (
+  `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255)
+);
+
+CREATE TABLE `Facilites_HMO` (
+  `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
+  `facility_id` bigint unsigned,
+  `hmo_id` bigint unsigned
+);
+
 CREATE TABLE `Services` (
   `id` bigint unsigned PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255)
@@ -64,6 +75,10 @@ CREATE TABLE `Appointments` (
   `doc_fac_id` bigint unsigned,
   `user_id` bigint unsigned
 );
+
+ALTER TABLE `Facilites_HMO` ADD FOREIGN KEY (`facility_id`) REFERENCES `Facilities` (`id`);
+
+ALTER TABLE `Facilites_HMO` ADD FOREIGN KEY (`hmo_id`) REFERENCES `HMOs` (`id`);
 
 ALTER TABLE `Facilities_Services` ADD FOREIGN KEY (`facility_id`) REFERENCES `Facilities` (`id`);
 

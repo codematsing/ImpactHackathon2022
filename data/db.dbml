@@ -11,6 +11,17 @@ Table Facilities as facility {
     score int
 }
 
+Table HMOs as hmo {
+    id "bigint unsigned" [pk, increment]
+    name varchar
+}
+
+Table Facilites_HMO {
+    id "bigint unsigned" [pk, increment]
+    facility_id "bigint unsigned" [ref: > facility.id]
+    hmo_id "bigint unsigned" [ref: > hmo.id]
+}
+
 Table Services as service {
     id "bigint unsigned" [pk, increment]
     name varchar
