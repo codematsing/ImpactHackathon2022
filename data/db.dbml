@@ -42,50 +42,13 @@ Table Doctors_Facilities as doc_fac {
     time_end_24hr varchar
     doctor_id "bigint unsigned" [ref: > doctor.id]
     facility_id "bigint unsigned" [ref: > facility.id]
-    room_no "bigint unsigned" [ref: > facility.id]
-}
-Table Facilities as facility {
-    id "bigint unsigned" [pk, increment]
-    name varchar
-    latitude float
-    longitude float
-    operating_start_time_24hr varchar
-    operating_end_time_24hr varchar
-    landline_no varchar
-    email varchar
+    room_no varchar
 }
 
-Table Equipment as equipment {
+Table Appointments as appointment {
     id "bigint unsigned" [pk, increment]
-    name varchar
-    facility_id "bigint unsigned" [ref: > facility.id]
-}
-
-Table Doctors as doctor {
-    id "bigint unsigned" [pk, increment]
-    first_name varchar
-    last_name varchar
-    landline_no varchar
-    email varchar
-}
-
-Table Doctors_Specialization as doc_spec {
-    id "bigint unsigned" [pk, increment]
-    doctor_id "bigint unsigned" [ref: > doctor.id]
-    doc_spec "bigint unsigned" [ref: > specialization.id]
-}
-
-Table Specializations as specialization {
-    id "bigint unsigned" [pk, increment]
-    title varchar
-}
-
-Table Doctors_Facilities as doc_fac {
-    id "bigint unsigned" [pk, increment]
-    day enum
-    time_start_24hr varchar
-    time_end_24hr varchar
-    doctor_id "bigint unsigned" [ref: > doctor.id]
-    facility_id "bigint unsigned" [ref: > facility.id]
-    room_no "bigint unsigned" [ref: > facility.id]
+    appointment_start timestamp
+    appointment_end timestamp
+    doc_fac_id "bigint unsigned" [ref: > doc_fac.id]
+    user_id "bigint unsigned"
 }
